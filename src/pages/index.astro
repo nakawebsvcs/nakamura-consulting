@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import Navigation from '../components/Navigation.astro';
+import Quotes from '../components/Quotes.astro';
 import logo from '../assets/images/naka-consult-logo.svg'; // Update this path to match your logo filename
 ---
 
@@ -29,7 +30,10 @@ import logo from '../assets/images/naka-consult-logo.svg'; // Update this path t
         </a>
     </div>
 </section>
-                                
+<Quotes />
+
+
+
 </Layout>
 
 
@@ -44,7 +48,7 @@ import logo from '../assets/images/naka-consult-logo.svg'; // Update this path t
     #hero-444 {
         /* Centers button */
         text-align: left;
-        padding: clamp(8.5rem, 21vw, 12rem) (16/16rem) 0;
+        padding: clamp(8rem, 19vw, 12rem) (16/16rem) 0;
         /* 100px - 300px */
         padding-bottom: clamp(6.25rem, 19.5vw, 18.75rem);
         position: relative;
@@ -67,8 +71,8 @@ import logo from '../assets/images/naka-consult-logo.svg'; // Update this path t
             /* 80px - 150px */
             width: clamp(5rem, 12vw, 9.375rem);
             height: auto;
-            /* 16px - 24px */
-            margin-bottom: clamp(1rem, 2vw, 1.5rem);
+            /* 24px - 32px - increased spacing below logo */
+            margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
             display: block;
             /* Soften the bold black lines */
             opacity: 0.95;
@@ -84,8 +88,8 @@ import logo from '../assets/images/naka-consult-logo.svg'; // Update this path t
             text-transform: uppercase;
             /* 12px - 20px */
             padding: 0 clamp(0.75rem, 1.6vw, 1.25rem);
-            /* 12px - 20px */
-            margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
+            /* 20px - 32px - increased spacing below tag */
+            margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
             color: var(--headerColor);
             border: 1px solid var(--headerColor);
             background: rgba(26, 26, 26, 0.05);

@@ -29,7 +29,7 @@
                     </li>
                     <li class="cs-li">
                         <a href="" class="cs-li-link">
-                            Services
+                            Experience
                         </a>
                     </li>
                     <li class="cs-li">
@@ -58,7 +58,6 @@
 		CLASSES: {
 			active: "cs-active",
 			menuOpen: "cs-open",
-			scroll: "scroll",
 		},
 	};
 
@@ -120,15 +119,6 @@
 		},
 	};
 
-	// Scroll Effects Management
-	const scrollManager = {
-		handleScrollEffects() {
-			const scrollPosition = document.documentElement.scrollTop;
-			const isScrolled = scrollPosition >= 100;
-
-			elements.body.classList.toggle(CONFIG.CLASSES.scroll, isScrolled);
-		},
-	};
 
 	// Initialization & Setup
 	const init = {
@@ -154,7 +144,6 @@
 			// Global events
 			document.addEventListener("keydown", (e) => e.key === "Escape" && keyboardManager.handleEscape());
 			document.addEventListener("focusin", eventManager.handleMobileFocus);
-			document.addEventListener("scroll", () => scrollManager.handleScrollEffects());
 
 			// Resize handling
 			window.addEventListener("resize", () => {
@@ -183,20 +172,6 @@
 	body {
 		&.cs-open {
 			overflow: hidden;
-			#cs-navigation {
-				&:after {
-					width: 100%;
-					opacity: 1;
-				}
-			}
-		}
-
-		&.scroll {
-			#cs-navigation {
-				&:after {
-					width: 100%;
-				}
-			}
 		}
 	}
 
@@ -204,7 +179,7 @@
 		width: 100%;
 		/* prevents padding and border from affecting height and width */
 		box-sizing: border-box;
-		position: fixed;
+		position: absolute;
 		z-index: 10000;
 
 		&:before {
@@ -222,21 +197,6 @@
 			transition: height 0.5s, opacity 0.5s;
 			-webkit-backdrop-filter: blur(10px);
 			backdrop-filter: blur(10px);
-		}
-
-		&:after {
-			/* on scroll overlay */
-			content: "";
-			width: 0%;
-			height: 100%;
-			background: #1a1a1a;
-			opacity: 0.8;
-			display: block;
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: -1;
-			transition: width 0.3s, opacity 0.3s;
 		}
 
 		&.cs-active {
@@ -480,38 +440,13 @@
 
 /* Small Desktop - 1024px */
 @media only screen and (min-width: 1024px) {
-	body {
-		&.scroll {
-			#cs-navigation {
-				&:after {
-					height: 100%;
-				}
-			}
-		}
-	}
-
 	#cs-navigation {
 		width: 100%;
 		/* prevents padding and border from affecting height and width */
 		box-sizing: border-box;
 		padding: 0;
-		position: fixed;
+		position: absolute;
 		z-index: 10000;
-
-		&:after {
-			/* on scroll overlay */
-			content: "";
-			width: 100%;
-			height: 0%;
-			background: #1a1a1a;
-			opacity: 0.8;
-			display: block;
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: -1;
-			transition: height 0.3s, opacity 0.3s;
-		}
 
 		.cs-container {
 			width: 100%;

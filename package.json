@@ -16,5 +16,8 @@
   },
   "allowScripts": {
     "esbuild": true
+  },
+  "devDependencies": {
+    "less": "^4.9.1"
   }
 }

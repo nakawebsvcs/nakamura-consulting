@@ -1,0 +1,666 @@
+<!-- ============================================ -->
+<!--                 Navigation                   -->
+<!-- ============================================ -->
+
+<header id="cs-navigation">
+    <div class="cs-container">
+        <!--Navigation List-->
+        <nav class="cs-nav" aria-label="main navigation">
+            <!--Mobile Nav Toggle-->
+            <button class="cs-toggle" aria-label="mobile menu toggle" aria-expanded="false" aria-controls="cs-ul-wrapper" aria-haspopup="menu">
+                <span class="cs-box" aria-hidden="true">
+                    <span class="cs-line cs-line1"></span>
+                    <span class="cs-line cs-line2"></span>
+                    <span class="cs-line cs-line3"></span>
+                </span>
+            </button>
+            <!-- We need a wrapper div so we can set a fixed height on the cs-ul in case the nav list gets too long from too many dropdowns being opened and needs to have an overflow scroll. This wrapper acts as the background so it can go the full height of the screen and not cut off any overflowing nav items while the cs-ul stops short of the bottom of the screen, which keeps all nav items in view no matter how mnay there are-->
+            <div class="cs-ul-wrapper" id="cs-ul-wrapper">
+                <ul class="cs-ul">
+                    <li class="cs-li">
+                        <a href="" class="cs-li-link cs-active" aria-current="page">
+                            Home
+                        </a>
+                    </li>
+                    <li class="cs-li">
+                        <a href="" class="cs-li-link">
+                            About
+                        </a>
+                    </li>
+                    <li class="cs-li">
+                        <a href="" class="cs-li-link">
+                            Services
+                        </a>
+                    </li>
+                    <li class="cs-li">
+                        <a href="" class="cs-li-link">
+                            FAQ
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<script>(() => {
+	// Configuration
+	const CONFIG = {
+		BREAKPOINTS: {
+			MOBILE: 1023.5,
+		},
+		SELECTORS: {
+			body: "body",
+			navigation: "#cs-navigation",
+			hamburger: "#cs-navigation .cs-toggle",
+			menuWrapper: "#cs-ul-wrapper",
+		},
+		CLASSES: {
+			active: "cs-active",
+			menuOpen: "cs-open",
+			scroll: "scroll",
+		},
+	};
+
+	// DOM Elements
+	const elements = {
+		body: document.querySelector(CONFIG.SELECTORS.body),
+		navigation: document.querySelector(CONFIG.SELECTORS.navigation),
+		hamburger: document.querySelector(CONFIG.SELECTORS.hamburger),
+		menuWrapper: document.querySelector(CONFIG.SELECTORS.menuWrapper),
+	};
+
+	// Utilities
+	const isMobile = () => window.matchMedia(`(max-width: ${CONFIG.BREAKPOINTS.MOBILE}px)`).matches;
+
+	const toggleAttribute = (element, attribute, value1 = "true", value2 = "false") => {
+		if (!element) return;
+		const current = element.getAttribute(attribute);
+		element.setAttribute(attribute, current === value1 ? value2 : value1);
+	};
+
+	const toggleInert = (element) => element && (element.inert = !element.inert);
+
+	// Menu Management
+	const menuManager = {
+		toggle() {
+			if (!elements.hamburger || !elements.navigation) return;
+
+			[elements.hamburger, elements.navigation].forEach((el) => el.classList.toggle(CONFIG.CLASSES.active));
+			elements.body.classList.toggle(CONFIG.CLASSES.menuOpen);
+			toggleAttribute(elements.hamburger, "aria-expanded");
+
+			// Only manage inert state on mobile devices
+			if (elements.menuWrapper && isMobile()) {
+				toggleInert(elements.menuWrapper);
+			}
+		},
+	};
+
+	// Keyboard Management
+	const keyboardManager = {
+		handleEscape() {
+			if (!elements.navigation) return;
+
+			// Close hamburger menu if open
+			if (elements.hamburger && elements.hamburger.classList.contains(CONFIG.CLASSES.active)) {
+				menuManager.toggle();
+				elements.hamburger.focus();
+			}
+		},
+	};
+
+	// Event Management
+	const eventManager = {
+		handleMobileFocus(event) {
+			if (!isMobile() || !elements.navigation.classList.contains(CONFIG.CLASSES.active)) return;
+			if (elements.menuWrapper.contains(event.target) || elements.hamburger.contains(event.target)) return;
+
+			menuManager.toggle();
+		},
+	};
+
+	// Scroll Effects Management
+	const scrollManager = {
+		handleScrollEffects() {
+			const scrollPosition = document.documentElement.scrollTop;
+			const isScrolled = scrollPosition >= 100;
+
+			elements.body.classList.toggle(CONFIG.CLASSES.scroll, isScrolled);
+		},
+	};
+
+	// Initialization & Setup
+	const init = {
+		inertState() {
+			if (!elements.menuWrapper) return;
+
+			// On mobile, menu starts closed, so set inert=true
+			// On desktop, menu is always visible, so set inert=false
+			elements.menuWrapper.inert = isMobile();
+		},
+
+		eventListeners() {
+			if (!elements.hamburger || !elements.navigation) return;
+
+			// Hamburger menu
+			elements.hamburger.addEventListener("click", menuManager.toggle);
+			elements.navigation.addEventListener("click", (e) => {
+				if (e.target === elements.navigation && elements.navigation.classList.contains(CONFIG.CLASSES.active)) {
+					menuManager.toggle();
+				}
+			});
+
+			// Global events
+			document.addEventListener("keydown", (e) => e.key === "Escape" && keyboardManager.handleEscape());
+			document.addEventListener("focusin", eventManager.handleMobileFocus);
+			document.addEventListener("scroll", () => scrollManager.handleScrollEffects());
+
+			// Resize handling
+			window.addEventListener("resize", () => {
+				this.inertState();
+				if (!isMobile() && elements.navigation.classList.contains(CONFIG.CLASSES.active)) {
+					menuManager.toggle();
+				}
+			});
+		},
+	};
+
+	// Initialize navigation system
+	init.inertState();
+	init.eventListeners();
+})();
+</script>
+
+<style lang="less">
+
+	/*-- -------------------------- -->
+<---     Mobile Navigation      -->
+<--- -------------------------- -*/
+
+/* Mobile - 1023px */
+@media only screen and (max-width: 1023.5px) {
+	body {
+		&.cs-open {
+			overflow: hidden;
+			#cs-navigation {
+				&:after {
+					width: 100%;
+					opacity: 1;
+				}
+			}
+		}
+
+		&.scroll {
+			#cs-navigation {
+				&:after {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	#cs-navigation {
+		width: 100%;
+		/* prevents padding and border from affecting height and width */
+		box-sizing: border-box;
+		position: fixed;
+		z-index: 10000;
+
+		&:before {
+			/* mobile nav overlay on open */
+			content: "";
+			width: 100%;
+			height: 0vh;
+			background: rgba(0, 0, 0, 0.6);
+			opacity: 0;
+			display: block;
+			position: absolute;
+			top: 100%;
+			right: 0;
+			z-index: -1100;
+			transition: height 0.5s, opacity 0.5s;
+			-webkit-backdrop-filter: blur(10px);
+			backdrop-filter: blur(10px);
+		}
+
+		&:after {
+			/* on scroll overlay */
+			content: "";
+			width: 0%;
+			height: 100%;
+			background: #1a1a1a;
+			opacity: 0.8;
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			transition: width 0.3s, opacity 0.3s;
+		}
+
+		&.cs-active {
+			&:before {
+				height: 150vh;
+				opacity: 1;
+			}
+			.cs-ul-wrapper {
+				opacity: 1;
+				transform: scaleY(1);
+				transition-delay: 0.15s;
+			}
+
+			.cs-li {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.cs-container {
+			width: 100%;
+			/* prevents padding and border from affecting height and width */
+			box-sizing: border-box;
+			padding: (16/16rem);
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+		}
+
+		.cs-logo {
+			width: (147/16rem);
+			height: auto;
+			margin: 0 auto 0 0;
+			/* prevents padding and border from affecting height and width */
+			box-sizing: border-box;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 10;
+
+			img {
+				width: 100%;
+				height: 100%;
+				/* ensures the image never overflows the container. It stays contained within it's width and height and expands to fill it then stops once it reaches an edge */
+				object-fit: contain;
+			}
+		}
+
+		.cs-toggle {
+			width: (56/16rem);
+			height: (56/16rem);
+			margin: 0 0 0 auto;
+			background-color: #484848;
+			border: none;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.cs-active {
+			.cs-line1 {
+				top: 50%;
+				transform: translate(-50%, -50%) rotate(225deg);
+			}
+
+			.cs-line2 {
+				top: 50%;
+				transform: translate(-50%, -50%) translateY(0) rotate(-225deg);
+				transform-origin: center;
+			}
+
+			.cs-line3 {
+				opacity: 0;
+				bottom: 100%;
+			}
+		}
+
+		.cs-box {
+			/* 24px - 28px */
+			width: clamp(1.5rem, 2vw, 1.75rem);
+			height: (16/16rem);
+			position: relative;
+		}
+
+		.cs-line {
+			width: 100%;
+			height: 2px;
+			background-color: #fafbfc;
+			border-radius: 2px;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		.cs-line1 {
+			top: 0;
+			transition: transform 0.5s, top 0.3s, left 0.3s;
+			animation-duration: 0.7s;
+			animation-timing-function: ease;
+			animation-direction: normal;
+			animation-fill-mode: forwards;
+			transform-origin: center;
+		}
+
+		.cs-line2 {
+			top: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			transition: top 0.3s, left 0.3s, transform 0.5s;
+			animation-duration: 0.7s;
+			animation-timing-function: ease;
+			animation-direction: normal;
+			animation-fill-mode: forwards;
+		}
+
+		.cs-line3 {
+			bottom: 0;
+			transition: bottom 0.3s, opacity 0.3s;
+		}
+	}
+}
+
+/*-- -------------------------- -->
+<---   Mobile Navigation Menu   -->
+<--- -------------------------- -*/
+
+/* Mobile - 1023px */
+@media only screen and (max-width: 1023.5px) {
+	#cs-navigation {
+		.cs-ul-wrapper {
+			width: 100%;
+			height: auto;
+			padding-bottom: (48/16rem);
+			opacity: 0;
+			background-color: #1a1a1a;
+			box-shadow: inset rgba(0, 0, 0, 0.2) 0px 8px 24px;
+			overflow: hidden;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			z-index: -1;
+			transform: scaleY(0);
+			transform-origin: top;
+			transition: transform 0.4s, opacity 0.3s;
+		}
+
+		.cs-ul {
+			margin: 0;
+			padding: (48/16rem) 0 0 0;
+			width: 100%;
+			height: auto;
+			max-height: 65vh;
+			overflow: scroll;
+			display: flex;
+			justify-content: flex-start;
+			flex-direction: column;
+			align-items: center;
+			gap: (20/16rem);
+		}
+
+		.cs-li {
+			width: 100%;
+			text-align: center;
+			list-style: none;
+			margin-right: 0;
+			/* transition from these values */
+			transform: translateY(-4.375rem);
+			opacity: 0;
+			transition: transform 0.6s, opacity 0.9s;
+
+			&:nth-of-type(1) {
+				transition-delay: 0.05s;
+			}
+			&:nth-of-type(2) {
+				transition-delay: 0.1s;
+			}
+			&:nth-of-type(3) {
+				transition-delay: 0.15s;
+			}
+			&:nth-of-type(4) {
+				transition-delay: 0.2s;
+			}
+			&:nth-of-type(5) {
+				transition-delay: 0.25s;
+			}
+			&:nth-of-type(6) {
+				transition-delay: 0.3s;
+			}
+			&:nth-of-type(7) {
+				transition-delay: 0.35s;
+			}
+			&:nth-of-type(8) {
+				transition-delay: 0.4s;
+			}
+			&:nth-of-type(9) {
+				transition-delay: 0.45s;
+			}
+			&:nth-of-type(10) {
+				transition-delay: 0.5s;
+			}
+			&:nth-of-type(11) {
+				transition-delay: 0.55s;
+			}
+			&:nth-of-type(12) {
+				transition-delay: 0.6s;
+			}
+			&:nth-of-type(13) {
+				transition-delay: 0.65s;
+			}
+		}
+
+		.cs-li-link {
+			/* 16px - 24px */
+			font-size: clamp(2rem, 2.5vw, 3rem);
+			line-height: 1.2em;
+			text-decoration: none;
+			margin: 0;
+			color: var(--bodyTextColorWhite);
+			display: inline-block;
+			position: relative;
+
+			&.cs-active {
+				color: var(--secondary);
+			}
+
+			&:hover {
+				color: var(--secondary);
+			}
+		}
+
+		.cs-button-solid {
+			display: none;
+		}
+	}
+}
+
+
+/*-- -------------------------- -->
+<---     Desktop Navigation     -->
+<--- -------------------------- -*/
+
+/* Small Desktop - 1024px */
+@media only screen and (min-width: 1024px) {
+	body {
+		&.scroll {
+			#cs-navigation {
+				&:after {
+					height: 100%;
+				}
+			}
+		}
+	}
+
+	#cs-navigation {
+		width: 100%;
+		/* prevents padding and border from affecting height and width */
+		box-sizing: border-box;
+		padding: 0;
+		position: fixed;
+		z-index: 10000;
+
+		&:after {
+			/* on scroll overlay */
+			content: "";
+			width: 100%;
+			height: 0%;
+			background: #1a1a1a;
+			opacity: 0.8;
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			transition: height 0.3s, opacity 0.3s;
+		}
+
+		.cs-container {
+			width: 100%;
+			max-width: (1280/16rem);
+			/* same height as the cs-ul-wrapper */
+			height: (93/16rem);
+			margin: auto;
+			/* prevents padding from affectin gheight */
+			box-sizing: border-box;
+			padding: 0 (16/16rem);
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			gap: (24/16rem);
+			position: relative;
+		}
+
+		.cs-toggle {
+			display: none;
+		}
+
+		.cs-logo {
+			width: 18.4%;
+			max-width: (197/16rem);
+			height: (60/16rem);
+			/* margin-right auto pushes everything away from it to the right */
+			margin: 0 auto 0 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 100;
+
+			img {
+				width: 100%;
+				height: 100%;
+				/* ensures the image never overflows the container. It stays contained within it's width and height and expands to fill it then stops once it reaches an edge */
+				object-fit: contain;
+			}
+		}
+
+		.cs-ul-wrapper {
+			/* absolutely positioned to be dead center */
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.cs-ul {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			/* 20px - 36px */
+			gap: clamp(1.25rem, 2.6vw, 2.25rem);
+		}
+
+		.cs-li {
+			list-style: none;
+			padding: (36/16rem) 0;
+			/* prevent flexbox from squishing it */
+			flex: none;
+		}
+
+		.cs-li-link {
+			/* 14px - 16px */
+			font-size: clamp(1rem, 2vw, 1.3rem);
+			line-height: 1.5em;
+			text-decoration: none;
+			margin: 0;
+			color: var(--headerColor);
+			display: block;
+			position: relative;
+			transition: color 0.3s;
+
+			&:before {
+				content: "";
+				width: 0%;
+				height: 1px;
+				background: currentColor;
+				opacity: 1;
+				display: block;
+				position: absolute;
+				bottom: -2px;
+				left: 0;
+				transition: width 0.3s;
+			}
+
+			&:hover {
+				color: #2e2e2e80;
+				&:before {
+					width: 100%;
+				}
+			}
+
+			&.cs-active {
+				color: #2e2e2e80;
+				&:before {
+					width: 100%;
+				}
+			}
+		}
+
+		.cs-button-solid {
+			font-size: (16/16rem);
+			font-weight: 700;
+			/* 46px - 56px */
+			line-height: clamp(2.875em, 5.5vw, 3.5em);
+			text-align: center;
+			text-decoration: none;
+			min-width: (150/16rem);
+			margin: 0;
+			/* prevents padding from adding to the width */
+			box-sizing: border-box;
+			padding: 0 (32/16rem);
+			background-color: var(--primary);
+			color: #fff;
+			display: inline-block;
+			position: relative;
+			z-index: 1;
+			transition: color 0.3s;
+
+			&:before {
+				content: "";
+				width: 0%;
+				height: 100%;
+				background: #fff;
+				opacity: 1;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: -1;
+				transition: width 0.3s;
+			}
+
+			&:hover {
+				color: #1a1a1a;
+				&:before {
+					width: 100%;
+				}
+			}
+		}
+
+		.cs-nav-button {
+			line-height: (46/16rem);
+		}
+	}
+}
+</style>

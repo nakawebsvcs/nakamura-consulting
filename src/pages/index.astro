@@ -1,11 +1,183 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { Image } from 'astro:assets';
+import Navigation from '../components/Navigation.astro';
+import logo from '../assets/images/naka-consult-logo.svg'; // Update this path to match your logo filename
 ---
 
 <Layout>
-	<Welcome />
+    <Navigation />
+	<!-- ============================================ -->
+<!--                    Hero                      -->
+<!-- ============================================ -->
+
+<section id="hero-444">
+    <div class="cs-container">
+        <div class="cs-content">
+            <Image src={logo} alt="Nakamura Consulting Logo" class="cs-logo" />
+            <span class="cs-tag">Nakamura Consulting, LLC</span>
+            <h1 class="cs-title">Let's Figure Stuff Out.</h1>
+            <p class="cs-text">
+                I'm Jessica Nakamura, a freelance management consultant with over a decade of nonprofit experience and an allergy to LinkedIn.
+            </p>
+        </div>
+        <a href="" class="cs-cta">
+            <!--Arrow Right-->
+            <svg class="cs-arrow" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none"><path fill="#FAFBFC" d="M24.55 31.367c-.317 0-.633-.117-.883-.367a1.258 1.258 0 0 1 0-1.767L32.9 20l-9.233-9.233a1.258 1.258 0 0 1 0-1.767 1.258 1.258 0 0 1 1.766 0L35.55 19.117a1.258 1.258 0 0 1 0 1.766L25.433 31c-.25.25-.566.367-.883.367Z"/><path fill="#FAFBFC" d="M34.383 21.25H6.333A1.26 1.26 0 0 1 5.083 20c0-.683.567-1.25 1.25-1.25h28.05c.684 0 1.25.567 1.25 1.25a1.26 1.26 0 0 1-1.25 1.25Z"/></svg>
+            <!--Wrapped in a span so it can be animated-->
+            <span class="cs-cta-text">Contact<br> Me</span>
+        </a>
+    </div>
+</section>
+                                
 </Layout>
+
+
+<style lang="less">
+                                                  
+	/*-- -------------------------- -->
+<---           Hero             -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #hero-444 {
+        /* Centers button */
+        text-align: left;
+        padding: clamp(8.5rem, 21vw, 12rem) (16/16rem) 0;
+        /* 100px - 300px */
+        padding-bottom: clamp(6.25rem, 19.5vw, 18.75rem);
+        position: relative;
+        z-index: 1;
+		background-color: var(--secondary);
+		color: var(--headerColor);
+
+        .cs-container {
+            width: 100%;
+            max-width: (1280/16rem);
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: (40/16rem);
+        }
+
+        .cs-logo {
+            /* 80px - 150px */
+            width: clamp(5rem, 12vw, 9.375rem);
+            height: auto;
+            /* 16px - 24px */
+            margin-bottom: clamp(1rem, 2vw, 1.5rem);
+            display: block;
+            /* Soften the bold black lines */
+            opacity: 0.95;
+            filter: contrast(0.85) brightness(1.1);
+        }
+
+        .cs-tag {
+            /* 14px - 16px */
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            /* 30px - 44px */
+            line-height: clamp(1.875rem, 4vw, 2.75rem);
+            text-align: center;
+            text-transform: uppercase;
+            /* 12px - 20px */
+            padding: 0 clamp(0.75rem, 1.6vw, 1.25rem);
+            /* 12px - 20px */
+            margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
+            color: var(--headerColor);
+            border: 1px solid var(--headerColor);
+            background: rgba(26, 26, 26, 0.05);
+            border-radius: (30/16rem);
+            /* prevents border from affecting height and width */
+            box-sizing: border-box;
+            display: inline-block;
+        }
+
+        .cs-title {
+            /* 39px - 61px */
+            font-size: clamp(2.4375rem, 6.4vw, 3.8125rem);
+            font-weight: 700;
+            line-height: 1.2em;
+            text-align: left;
+            max-width: (829/16rem);
+            /* 16px - 24px */
+            margin: 0 auto clamp(1rem, 4vw, 1.5rem) 0;
+            color: var(--headerColor);
+            position: relative;
+        }
+
+        .cs-text {
+            /* 16px - 20px */
+            font-size: clamp(1rem, 1.95vw, 1.25rem);
+            line-height: 1.5em;
+            text-align: left;
+            width: 100%;
+            /* 464px - 622px */
+            max-width: clamp(29rem, 60vw, 38.785rem);
+            margin: 0 auto 0 0;
+            color: var(--headerColor);
+        }
+
+        .cs-cta {
+            /* 14px - 16px */
+            font-size: clamp(0.875rem, 1.5vw, 1.25rem);
+            text-decoration: none;
+            /* 16px - 20px */
+            text-align: center;
+            /* 141px - 200px */
+            width: clamp(8.8125rem, 17vw, 12.25rem);
+            height: clamp(8.8125rem, 17vw, 12.25rem);
+            margin-left: auto;
+            background-color: var(--headerColor);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            /* place it higher on the z index to be on top of the glowing ball effects */
+            z-index: 10;
+            transition:
+                background-color 0.3s,
+                color 0.3s;
+
+            &:hover {
+                background-color: #1a1a1aa1;
+                color: black;
+                .cs-arrow {
+                    transform: translateX(3.75rem);
+                    opacity: 0;
+                }
+                .cs-cta-text {
+                    transform: translateY(-0.9375rem);
+                }
+            }
+        }
+
+        .cs-arrow {
+            width: (40/16rem);
+            height: auto;
+            transition:
+                transform 0.3s,
+                opacity 0.3s;
+        }
+
+        .cs-cta-text {
+            transition: transform 0.3s;
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #hero-444 {
+        .cs-content {
+            width: 70%;
+        }
+    }
+}
+
+</style>

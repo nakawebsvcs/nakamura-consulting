@@ -1,0 +1,439 @@
+<!-- ============================================ -->
+<!--              Experience                    -->
+<!-- ============================================ -->
+
+<section id="experience-2401">
+    <div class="cs-container">
+        <!-- Opening Summary -->
+        <div class="cs-intro-wrapper">
+            <p class="cs-intro">
+                Over the past decade, I've worn many hats in the nonprofit sector—from program coordinator to interim executive director, strategic advisor to operations troubleshooter. Each role taught me something different about what makes organizations actually work.
+            </p>
+        </div>
+
+        <!-- Featured Experiences -->
+        <div class="cs-featured-group">
+            <!-- Featured Experience 1 -->
+            <article class="cs-featured">
+                <div class="cs-bracket-left"></div>
+                <div class="cs-featured-content">
+                    <span class="cs-dates">2020 — Present</span>
+                    <h3 class="cs-role">Independent Consultant</h3>
+                    <p class="cs-org">Self-Employed</p>
+                    <p class="cs-description">
+                        After years of working within organizations, I realized I could have more impact by helping multiple nonprofits navigate their most challenging transitions. I've partnered with organizations ranging from grassroots community groups to established institutions, guiding them through strategic planning, operational overhauls, and leadership transitions.
+                    </p>
+                    <p class="cs-description">
+                        What I love most about this work is the variety—no two clients are the same, and each project requires a fresh approach. I've helped organizations clarify their missions, restructure their teams, build sustainable funding strategies, and navigate the messy human dynamics that come with organizational change.
+                    </p>
+                    <blockquote class="cs-pullquote">
+                        "The best solutions aren't found in textbooks—they emerge from understanding an organization's unique culture and constraints."
+                    </blockquote>
+                </div>
+            </article>
+
+            <!-- Featured Experience 2 -->
+            <article class="cs-featured">
+                <div class="cs-bracket-left"></div>
+                <div class="cs-featured-content">
+                    <span class="cs-dates">2015 — 2020</span>
+                    <h3 class="cs-role">Director of Operations</h3>
+                    <p class="cs-org">Community Arts Initiative</p>
+                    <p class="cs-description">
+                        Leading operations for a fast-growing arts nonprofit taught me that sustainability isn't just about money—it's about building systems that don't rely on heroic effort. When I joined, the organization was running on enthusiasm and late nights. By the time I left, we had clear processes, healthy boundaries, and a team that could actually take vacations.
+                    </p>
+                    <p class="cs-description">
+                        I rebuilt our financial systems, professionalized our HR practices, and created operational frameworks that scaled with our growth. But the real achievement was cultural: creating an environment where people could do excellent work without burning out.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Featured Experience 3 -->
+            <article class="cs-featured">
+                <div class="cs-bracket-left"></div>
+                <div class="cs-featured-content">
+                    <span class="cs-dates">2012 — 2015</span>
+                    <h3 class="cs-role">Interim Executive Director</h3>
+                    <p class="cs-org">Youth Mentorship Network</p>
+                    <p class="cs-description">
+                        Stepping into an interim ED role during a leadership crisis was trial by fire. The board was fractured, staff morale was low, and funding was uncertain. I had six months to stabilize the ship and position the organization for its next permanent leader.
+                    </p>
+                    <p class="cs-description">
+                        I focused on the fundamentals: honest communication, decisive action on long-avoided problems, and rebuilding trust between the board and staff. We didn't solve everything, but we created enough stability for the organization to move forward with confidence.
+                    </p>
+                    <blockquote class="cs-pullquote">
+                        "Crisis reveals what's essential. Strip away everything else."
+                    </blockquote>
+                </div>
+            </article>
+        </div>
+
+        <!-- Additional Experience -->
+        <div class="cs-additional-wrapper">
+            <h4 class="cs-additional-title">Additional Experience</h4>
+            <div class="cs-additional-group">
+                <div class="cs-additional-item">
+                    <span class="cs-additional-dates">2010—2012</span>
+                    <p class="cs-additional-text">
+                        <strong>Program Manager</strong> at Environmental Education Collective, where I learned that good programming requires both vision and ruthless prioritization.
+                    </p>
+                </div>
+                <div class="cs-additional-item">
+                    <span class="cs-additional-dates">2008—2010</span>
+                    <p class="cs-additional-text">
+                        <strong>Grants Coordinator</strong> at Regional Food Bank, mastering the art of storytelling through data and building relationships with institutional funders.
+                    </p>
+                </div>
+                <div class="cs-additional-item">
+                    <span class="cs-additional-dates">2006—2008</span>
+                    <p class="cs-additional-text">
+                        <strong>Administrative Assistant</strong> at Homeless Services Coalition, where I discovered that "administrative" work is actually the backbone of everything else.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="cs-education-wrapper">
+            <div class="cs-divider"></div>
+            <h4 class="cs-education-title">Education</h4>
+            <div class="cs-education-group">
+                <div class="cs-education-item">
+                    <h5 class="cs-degree">Master of Public Administration</h5>
+                    <p class="cs-school">State University, 2010</p>
+                    <p class="cs-education-note">
+                        Focused on nonprofit management and organizational theory. Learned frameworks that I've since adapted, ignored, or completely reimagined based on real-world experience.
+                    </p>
+                </div>
+                <div class="cs-education-item">
+                    <h5 class="cs-degree">Bachelor of Arts in Sociology</h5>
+                    <p class="cs-school">Liberal Arts College, 2006</p>
+                    <p class="cs-education-note">
+                        Studied how people organize, how power works, and why institutions resist change—all of which turned out to be surprisingly relevant.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+(() => {
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('cs-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const featured = document.querySelectorAll('#experience-2401 .cs-featured');
+    featured.forEach(item => observer.observe(item));
+})();
+</script>
+
+<style lang="less">
+
+/*-- -------------------------- -->
+<---        Experience          -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #experience-2401 {
+        background-color: var(--secondary);
+        /* 60px - 100px top and bottom */
+        padding: var(--sectionPadding);
+        position: relative;
+
+        .cs-container {
+            width: 100%;
+            max-width: (900/16rem);
+            margin: auto;
+        }
+
+        /* Opening Summary */
+        .cs-intro-wrapper {
+            margin-bottom: clamp(3rem, 6vw, 5rem);
+        }
+
+        .cs-intro {
+            /* 20px - 28px */
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            line-height: 1.6em;
+            margin: 0;
+            color: var(--headerColor);
+            font-weight: 400;
+        }
+
+        /* Featured Experiences */
+        .cs-featured-group {
+            display: flex;
+            flex-direction: column;
+            /* 48px - 80px */
+            gap: clamp(3rem, 6vw, 5rem);
+            margin-bottom: clamp(3rem, 6vw, 5rem);
+        }
+
+        .cs-featured {
+            position: relative;
+            padding-left: clamp(1rem, 2vw, 1.5rem);
+            /* Fade-in animation setup */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+
+            &.cs-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Stagger delays */
+            &:nth-child(1) {
+                transition-delay: 0.1s;
+            }
+            &:nth-child(2) {
+                transition-delay: 0.2s;
+            }
+            &:nth-child(3) {
+                transition-delay: 0.3s;
+            }
+        }
+
+        .cs-bracket-left {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary);
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: (12/16rem);
+                height: 3px;
+                background: var(--primary);
+            }
+        }
+
+        .cs-featured-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cs-dates {
+            /* 12px - 14px */
+            font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+            line-height: 1.5em;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: (8/16rem);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .cs-role {
+            /* 28px - 36px */
+            font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+            font-weight: 900;
+            line-height: 1.2em;
+            margin: 0 0 (4/16rem) 0;
+            color: var(--headerColor);
+        }
+
+        .cs-org {
+            /* 16px - 18px */
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            line-height: 1.5em;
+            margin: 0 0 (16/16rem) 0;
+            color: var(--bodyTextColor);
+            font-style: italic;
+        }
+
+        .cs-description {
+            /* 16px - 18px */
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            line-height: 1.7em;
+            margin: 0 0 (16/16rem) 0;
+            color: var(--bodyTextColor);
+
+            &:last-of-type {
+                margin-bottom: (24/16rem);
+            }
+        }
+
+        .cs-pullquote {
+            /* 18px - 24px */
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            line-height: 1.5em;
+            font-style: italic;
+            font-weight: 700;
+            margin: (24/16rem) 0 0 0;
+            padding: (20/16rem);
+            background: var(--secondary);
+            border-left: 4px solid var(--primary);
+            color: var(--headerColor);
+        }
+
+        /* Additional Experience */
+        .cs-additional-wrapper {
+            margin-bottom: clamp(3rem, 6vw, 5rem);
+        }
+
+        .cs-additional-title {
+            /* 20px - 24px */
+            font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+            font-weight: 900;
+            line-height: 1.2em;
+            margin: 0 0 (24/16rem) 0;
+            color: var(--headerColor);
+        }
+
+        .cs-additional-group {
+            display: flex;
+            flex-direction: column;
+            gap: (20/16rem);
+        }
+
+        .cs-additional-item {
+            display: flex;
+            flex-direction: column;
+            gap: (8/16rem);
+        }
+
+        .cs-additional-dates {
+            font-size: (14/16rem);
+            line-height: 1.5em;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .cs-additional-text {
+            /* 16px - 18px */
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            line-height: 1.6em;
+            margin: 0;
+            color: var(--bodyTextColor);
+
+            strong {
+                color: var(--headerColor);
+                font-weight: 700;
+            }
+        }
+
+        /* Education */
+        .cs-education-wrapper {
+            position: relative;
+        }
+
+        .cs-divider {
+            width: clamp(4rem, 10vw, 6rem);
+            height: 2px;
+            background: var(--headerColor);
+            margin: 0 0 (32/16rem) 0;
+            position: relative;
+
+            &:after {
+                content: "";
+                width: (6/16rem);
+                height: (6/16rem);
+                background: var(--headerColor);
+                border-radius: 50%;
+                position: absolute;
+                right: -(16/16rem);
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+        .cs-education-title {
+            /* 20px - 24px */
+            font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+            font-weight: 900;
+            line-height: 1.2em;
+            margin: 0 0 (24/16rem) 0;
+            color: var(--headerColor);
+        }
+
+        .cs-education-group {
+            display: flex;
+            flex-direction: column;
+            gap: (32/16rem);
+        }
+
+        .cs-education-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cs-degree {
+            /* 18px - 22px */
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            font-weight: 700;
+            line-height: 1.3em;
+            margin: 0 0 (4/16rem) 0;
+            color: var(--headerColor);
+        }
+
+        .cs-school {
+            font-size: (16/16rem);
+            line-height: 1.5em;
+            margin: 0 0 (12/16rem) 0;
+            color: var(--bodyTextColor);
+            font-style: italic;
+        }
+
+        .cs-education-note {
+            font-size: (16/16rem);
+            line-height: 1.6em;
+            margin: 0;
+            color: var(--bodyTextColor);
+        }
+    }
+}
+
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #experience-2401 {
+        .cs-intro {
+            /* 24px - 32px */
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .cs-featured {
+            padding-left: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .cs-bracket-left {
+            width: 4px;
+
+            &:before {
+                width: (20/16rem);
+                height: 4px;
+            }
+        }
+
+        .cs-additional-item {
+            flex-direction: row;
+            gap: (24/16rem);
+        }
+
+        .cs-additional-dates {
+            flex-shrink: 0;
+            width: (120/16rem);
+        }
+    }
+}
+
+</style>

@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import Navigation from '../components/Navigation.astro';
 import Quotes from '../components/Quotes.astro';
 import LeadershipStyle from '../components/LeadershipStyle.astro';
+import Experience from '../components/Experience.astro';
 import logo from '../assets/images/naka-consult-logo.svg'; // Update this path to match your logo filename
 ---
 
@@ -33,6 +34,7 @@ import logo from '../assets/images/naka-consult-logo.svg'; // Update this path t
 </section>
 <Quotes />
 <LeadershipStyle />
+<Experience />
 
 </Layout>
 
@@ -49,8 +51,8 @@ import logo from '../assets/images/naka-consult-logo.svg'; // Update this path t
         /* Centers button */
         text-align: left;
         padding: clamp(8rem, 19vw, 12rem) (16/16rem) 0;
-        /* 100px - 300px */
-        padding-bottom: clamp(6.25rem, 19.5vw, 18.75rem);
+        /* 60px - 120px - reduced bottom padding */
+        padding-bottom: clamp(3.75rem, 10vw, 7.5rem);
         position: relative;
         z-index: 1;
 		background-color: var(--secondary);

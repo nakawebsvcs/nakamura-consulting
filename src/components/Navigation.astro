@@ -18,22 +18,22 @@
             <div class="cs-ul-wrapper" id="cs-ul-wrapper">
                 <ul class="cs-ul">
                     <li class="cs-li">
-                        <a href="" class="cs-li-link cs-active" aria-current="page">
+                        <a href="#hero-444" class="cs-li-link cs-active" aria-current="page">
                             Home
                         </a>
                     </li>
                     <li class="cs-li">
-                        <a href="" class="cs-li-link">
+                        <a href="#leadership-892" class="cs-li-link">
                             Approach & Philosophies
                         </a>
                     </li>
                     <li class="cs-li">
-                        <a href="" class="cs-li-link">
+                        <a href="#experience-2401" class="cs-li-link">
                             Experience
                         </a>
                     </li>
                     <li class="cs-li">
-                        <a href="" class="cs-li-link">
+                        <a href="#faq" class="cs-li-link">
                             FAQ
                         </a>
                     </li>
@@ -158,6 +158,16 @@
 	// Initialize navigation system
 	init.inertState();
 	init.eventListeners();
+
+	// Close mobile menu when clicking anchor links
+	const navLinks = document.querySelectorAll('#cs-navigation .cs-li-link');
+	navLinks.forEach(link => {
+		link.addEventListener('click', () => {
+			if (isMobile() && elements.navigation.classList.contains(CONFIG.CLASSES.active)) {
+				menuManager.toggle();
+			}
+		});
+	});
 })();
 </script>
 
@@ -539,14 +549,14 @@
 			}
 
 			&:hover {
-				color: #2e2e2e80;
+				color: var(--primary);
 				&:before {
 					width: 100%;
 				}
 			}
 
 			&.cs-active {
-				color: #2e2e2e80;
+				color: var(--primary);
 				&:before {
 					width: 100%;
 				}

@@ -5,6 +5,7 @@ import Navigation from '../components/Navigation.astro';
 import Quotes from '../components/Quotes.astro';
 import LeadershipStyle from '../components/LeadershipStyle.astro';
 import Experience from '../components/Experience.astro';
+import Footer from '../components/Footer.astro';
 import logo from '../assets/images/naka-consult-logo.svg'; // Update this path to match your logo filename
 ---
 
@@ -32,9 +33,11 @@ import logo from '../assets/images/naka-consult-logo.svg'; // Update this path t
         </a>
     </div>
 </section>
+
 <Quotes />
 <LeadershipStyle />
 <Experience />
+<Footer />
 
 </Layout>
 
@@ -51,8 +54,8 @@ import logo from '../assets/images/naka-consult-logo.svg'; // Update this path t
         /* Centers button */
         text-align: left;
         padding: clamp(8rem, 19vw, 12rem) (16/16rem) 0;
-        /* 60px - 120px - reduced bottom padding */
-        padding-bottom: clamp(3.75rem, 10vw, 7.5rem);
+        /* 100px - 300px */
+        padding-bottom: clamp(6.25rem, 19.5vw, 18.75rem);
         position: relative;
         z-index: 1;
 		background-color: var(--secondary);
@@ -136,8 +139,10 @@ import logo from '../assets/images/naka-consult-logo.svg'; // Update this path t
             width: clamp(8.8125rem, 17vw, 12.25rem);
             height: clamp(8.8125rem, 17vw, 12.25rem);
             margin-left: auto;
-            background-color: var(--headerColor);
-            color: #fff;
+            background: rgba(26, 26, 26, 0.05);
+            color: var(--headerColor);
+			border: 1px solid var(--headerColor);
+            color: var(--headerColor);
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -151,14 +156,15 @@ import logo from '../assets/images/naka-consult-logo.svg'; // Update this path t
                 color 0.3s;
 
             &:hover {
-                background-color: #1a1a1aa1;
-                color: black;
+                background: #f7f0eb5b;
+                color: var(--primary);
                 .cs-arrow {
                     transform: translateX(3.75rem);
                     opacity: 0;
                 }
                 .cs-cta-text {
                     transform: translateY(-0.9375rem);
+					font-weight: 900;
                 }
             }
         }
@@ -169,6 +175,15 @@ import logo from '../assets/images/naka-consult-logo.svg'; // Update this path t
             transition:
                 transform 0.3s,
                 opacity 0.3s;
+
+            path {
+                fill: var(--headerColor);
+                transition: fill 0.3s;
+            }
+        }
+
+        .cs-cta:hover .cs-arrow path {
+            fill: var(--headerColor);
         }
 
         .cs-cta-text {

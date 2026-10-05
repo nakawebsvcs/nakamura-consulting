@@ -1,5 +1,5 @@
 :root {
-    --primary: #085F72;
+    --primary: #1f83b9;
     --primaryLight: #ffba43;
     --secondary: #d8d0cade;
     --secondaryLight: #ffba43;
@@ -13,6 +13,12 @@
     --bodyFontSize: 1rem;
     /* 40px - 80px top and bottom */
     --sectionPadding: clamp(2.5rem, 5.5vw, 5rem) 1rem;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Offset for navigation height when jumping to anchor links */
+    scroll-padding-top: 6rem;
 }
 
 body {
